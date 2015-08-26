@@ -1,6 +1,10 @@
 function love.load()
 	love.graphics.setBackgroundColor(45, 192, 255)
 	grass = love.graphics.newImage( "graphics/grass.png" )
+	audPickup = love.audio.newSource( "audio/pickup.wav" )
+	audDinosaur = love.audio.newSource( "audio/SuburbanDinosaur_Moosader.ogg" )
+	audDinosaur:setLooping(true)
+	audDinosaur:play()
 
 	math.randomseed(os.time())
 
@@ -141,6 +145,7 @@ end
 function testCollision()
 	if math.sqrt(math.pow((ayne.x + 16) - (stick.x + 16), 2) + math.pow((ayne.y + 48) - (stick.y + 24), 2)) < 16 then
 		moveStick()
+		audPickup:play()
 		collected = collected + 1
 	end
 end
