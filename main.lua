@@ -3,6 +3,7 @@ Stick     = require "Stick"
 GameState = require "GameState"
 
 require "statePlay"
+require "statePaused"
 require "ayne"
 require "game"
 
@@ -20,7 +21,6 @@ end
 
 function love.keypressed( key, isrepeat )
 	game.state.keypressed( key, isrepeat )
-	if key == "escape" then love.event.quit() end
 end
 
 function love.keyreleased( key, isrepeat )

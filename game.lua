@@ -27,5 +27,24 @@ game = {
 		entities = { },
 		player = ayne
 	},
-	state = nil
+	state = nil,
+	drawField = function()
+		for x=0,24 do
+			for y=0,18 do
+				love.graphics.draw( grass, 32*x, 32*y )
+			end
+		end
+
+		for i=1, #game.field.entities, 1 do
+			local entity = game.field.entities[i]
+			love.graphics.draw( entity.img, entity.x, entity.y )
+	    end
+
+		love.graphics.draw( game.field.player.img, game.field.player.states[game.field.player.state].quads[frame], game.field.player.x, game.field.player.y )
+
+		love.graphics.setColor(0, 0, 0)
+		love.graphics.rectangle( "fill", 0, 0, 800, 30 )
+		love.graphics.setColor(255, 255, 255)
+		love.graphics.print(" STICKS COLLECTED: " .. tostring(collected), 10, 8 )
+	end
 }

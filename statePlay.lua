@@ -11,30 +11,16 @@ statePlay = GameState:new({
 	    game.field.player.update()
 	end,
 	draw = function ()
-		for x=0,24 do
-			for y=0,18 do
-				love.graphics.draw( grass, 32*x, 32*y )
-			end
-		end
-		love.graphics.setColor(0, 0, 0)
-		love.graphics.rectangle( "fill", 0, 0, 800, 30 )
-		love.graphics.setColor(255, 255, 255)
-
-		for i=1, #game.field.entities, 1 do
-			local entity = game.field.entities[i]
-			love.graphics.draw( entity.img, entity.x, entity.y )
-	    end
-
-		love.graphics.draw( game.field.player.img, game.field.player.states[game.field.player.state].quads[frame], game.field.player.x, game.field.player.y )
-		love.graphics.print(" STICKS COLLECTED: " .. tostring(collected), 10, 8 )
+		game.drawField()
 	end,
 	keypressed = function ( key, isrepeat )
-		if key == "s" then game.field.player.state = "movedown";  frame = 1 end
-		if key == "w" then game.field.player.state = "moveup";    frame = 1 end
-		if key == "a" then game.field.player.state = "moveleft";  frame = 1 end
-		if key == "d" then game.field.player.state = "moveright"; frame = 1 end
+		if key == "s" and not isrepeat then game.field.player.state = "movedown";  frame = 1 end
+		if key == "w" and not isrepeat then game.field.player.state = "moveup";    frame = 1 end
+		if key == "a" and not isrepeat then game.field.player.state = "moveleft";  frame = 1 end
+		if key == "d" and not isrepeat then game.field.player.state = "moveright"; frame = 1 end
+		if key == "escape" and not isrepeat then game.state = statePaused end
 	end,
-	keyreleased = function ( key, isrepeat )
+	keyreleased = function ( key )
 		if key == "s" and game.field.player.state == "movedown"  then game.field.player.state = "down";  frame = 1; resetMovement() end
 		if key == "w" and game.field.player.state == "moveup"    then game.field.player.state = "up";    frame = 1; resetMovement() end
 		if key == "a" and game.field.player.state == "moveleft"  then game.field.player.state = "left";  frame = 1; resetMovement() end
