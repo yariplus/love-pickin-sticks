@@ -25,7 +25,8 @@ game = {
 	end,
 	field = {
 		entities = { },
-		player = ayne
+		player = ayne,
+		time = 0
 	},
 	state = nil,
 	drawField = function()
@@ -41,10 +42,5 @@ game = {
 	    end
 
 		love.graphics.draw( game.field.player.img, game.field.player.states[game.field.player.state].quads[frame], game.field.player.x, game.field.player.y )
-
-		love.graphics.setColor(0, 0, 0)
-		love.graphics.rectangle( "fill", 0, 0, 800, 30 )
-		love.graphics.setColor(255, 255, 255)
-		love.graphics.print(" STICKS COLLECTED: " .. tostring(collected), 10, 8 )
 	end
 }

@@ -8,10 +8,17 @@ statePlay = GameState:new({
 				collected = collected + 1
 			end
 	    end
+	    game.field.time = game.field.time + 0.05
 	    game.field.player.update()
 	end,
-	draw = function ()
+	draw = function()
 		game.drawField()
+	end,
+	drawGUI = function()
+		love.graphics.setColor(0, 0, 0)
+		love.graphics.rectangle( "fill", 0, 0, 800, 30 )
+		love.graphics.setColor(255, 255, 255)
+		love.graphics.print(" STICKS COLLECTED: " .. tostring(collected), 10, 8 )
 	end,
 	keypressed = function ( key, isrepeat )
 		if key == "s" and not isrepeat then game.field.player.state = "movedown";  frame = 1 end

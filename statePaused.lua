@@ -3,6 +3,12 @@ statePaused = GameState:new({
 	end,
 	draw = function ()
 		game.drawField()
+	end,
+	drawGUI = function()
+		love.graphics.setColor(0, 0, 0)
+		love.graphics.rectangle( "fill", 0, 0, 800, 30 )
+		love.graphics.setColor(255, 255, 255)
+		love.graphics.print(" STICKS COLLECTED: " .. tostring(collected), 10, 8 )
 		love.graphics.setColor(0, 0, 0)
 		love.graphics.rectangle( "fill", 200, 200, 400, 100 )
 		love.graphics.setColor(255, 255, 255)
