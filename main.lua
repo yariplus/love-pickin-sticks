@@ -45,15 +45,21 @@ function love.load()
 	]]
 end
 
+game.shader = false
+
 function love.update()
 	game.state.update()
+	if game.shader then
+		myShader:send("px", game.field.player.x + 16)
+		myShader:send("py", 600 - game.field.player.y - 24)
+	end
 	--myShader:send("time", game.field.time)
-	myShader:send("px", game.field.player.x + 16)
-	myShader:send("py", 600 - game.field.player.y - 24)
 end
 
 function love.draw()
-	love.graphics.setShader(myShader)
+	if game.shader then
+		love.graphics.setShader(myShader)
+	end
 	game.state.draw()
 	love.graphics.setShader()
 	game.state.drawGUI()

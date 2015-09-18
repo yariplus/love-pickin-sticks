@@ -32,6 +32,9 @@ statePlay = GameState:new({
 		if key == "w" and game.field.player.state == "moveup"    then game.field.player.state = "up";    frame = 1; resetMovement() end
 		if key == "a" and game.field.player.state == "moveleft"  then game.field.player.state = "left";  frame = 1; resetMovement() end
 		if key == "d" and game.field.player.state == "moveright" then game.field.player.state = "right"; frame = 1; resetMovement() end
+		if key == "p" then
+			game.shader = not game.shader;
+		end
 	end
 })
 
